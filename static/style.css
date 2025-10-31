@@ -1,0 +1,57 @@
+body {
+    background-color: #D3D1A6;
+}
+
+.header {
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -8px;
+    width: 100%;
+    height: 100px;
+    background-color: #31693B;
+}
+
+.company_name {
+    text-align: center;
+    color: #FFC44B;
+    font-size: 30px;
+}
+
+.product_list {
+    position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.merch_body {
+    position: absolute;
+}
+
+#markers {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}
+
+#rating_scale {
+    width: 200px;
+}
+
+
+
+
+
+.add_body {
+    position: absolute;
+}

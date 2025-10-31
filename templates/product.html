@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('index') }}"><h1 class="company_name">CardSharp</h1></a>
+    </div>
+    <div class="merch_body">
+        <h3 class="merch_name">{{ merch.name }}</h3>
+        <img src="{{ url_for('static', filename='images/'+merch.image) }}" alt="Merch" class="merch_image">
+        <p class="merch_description">{{ merch.description }}</p>
+        <p class="merch_price">{{ merch.price | string+",- NOK" }}</p>
+        {% if merch.votes==0 %}
+            <p class="merch_rating">☆☆☆☆☆</p>
+        {% elif merch.votes==1 %}
+            <p class="merch_rating">★☆☆☆☆</p>
+        {% elif merch.votes==2 %}
+            <p class="merch_rating">★★☆☆☆</p>
+        {% elif merch.votes==3 %}
+            <p class="merch_rating">★★★☆☆</p>
+        {% elif merch.votes==4 %}
+            <p class="merch_rating">★★★★☆</p>
+        {% elif merch.votes==5 %}
+            <p class="merch_rating">★★★★★</p>
+        {% endif %}
+        <form method="POST" action="{{ '/vote/'+merch.category+'/'+merch.id | string }}">
+            <label for="rating_scale">Rate this product: </label><br>
+            <input type="range" id="rating_scale" name="rating" min="0" max="5" step="1" required list="markers">
+            <datalist id="markers">
+                <option value="0" label="0">0</option>
+                <option value="1" label="1">1</option>
+                <option value="2" label="2">2</option>
+                <option value="3" label="3">3</option>
+                <option value="4" label="4">4</option>
+                <option value="5" label="5">5</option>
+            </datalist>
+            <button type="submit">Rate</button>
+        </form>
+    </div>
+</body>
+</html>
