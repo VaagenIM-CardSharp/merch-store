@@ -63,7 +63,7 @@ class Merch:
             self.id = len(existing) + 1
         filepath = os.path.join(folder, f"{self.id}.json")
         with open(filepath, "w", encoding="utf-8") as f:
-            json.dump(self.__dict__, f)
+            json.dump(self.__dict__, f,indent=4)
 
     @staticmethod
     def load(category, merch_id):
