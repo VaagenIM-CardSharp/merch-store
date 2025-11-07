@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('index') }}" class="home_link"><h1 class="company_name">CardSharp</h1></a>
+    </div>
+    <div class="add_body">
+        <form method="POST" enctype="multipart/form-data">
+            <h1 id="add_header">Add new merch</h1>
+            <div class="input_field_container">
+                <label for="name" class="input_field_name">Merch's name</label><br>
+                <input type="text" class="input_field" id="name" name="name" required placeholder="Merch's name..." maxlength="50">
+            </div>
+
+            <div class="input_field_container" id="input_field_container_category">
+                <label for="category" class="input_field_name">Category</label><br>
+                <select class="category_field" name="category" id="category" required>
+                    {% for cat in categories %}
+                        <option value="{{ cat }}" class="category_option">{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="input_field_container" id="input_field_container_price">
+                <label for="price" class="input_field_name">Price</label><br>
+                <input type="text" class="input_field" id="price" name="price" required placeholder="12345..." maxlength="15" pattern="[0-9]{1,15}">
+            </div>
+
+            <div class="description_field_container">
+                <label for="description_field" class="input_field_name">Description</label><br>
+                <textarea name="description" id="description_field" required maxlength="200" placeholder="Description..."></textarea>
+            </div>
+
+            <div class="image_input_container">
+                <label for="image_input" class="input_field_name">Image</label><br>
+                <input type="file" id="image_input" name="image" accept="image/*" required><br>
+            </div>
+            <button type="submit" class="submit_button">Add merch</button>
+        </form>
+    </div>
+</body>
+</html>
