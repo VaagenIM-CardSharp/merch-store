@@ -7,53 +7,52 @@
 </head>
 <body>
     <div class="header">
-        <a href="{{ url_for('index') }}"><h1 class="company_name">CardSharp</h1></a>
+        <a href="{{ url_for('index') }}" class="home_link"><h1 class="company_name">CardSharp</h1></a>
     </div>
-    <div class="product_list">
+    <div class="home_body">
         {% if amount==1 %}
-            <h2>Found 1 product</h2>
+            <h2 class="result_text">Found 1 product</h2>
         {% else %}
-            <h2>Found {{ amount }} products</h2>
+            <h2 class="result_text">Found {{ amount }} products</h2>
         {% endif %}
         <form class="filters" method="get" id="filters" name="filters">
             <label for="filter">Category</label><br>
-            <select name="filter" id="filter">
+            <select name="filter" id="filter" >
+                <option value="">>--Choose a category--<</option>
                 {% for cat in categories %}
                     <option value="{{ cat }}">{{ cat }}</option>
                 {% endfor %}
             </select>
             <button type="submit">Search</button>
         </form>
-        {% for merch in merchandise %}
-            <div class="product">
+            <div class="product_list">
+            {% for merch in merchandise %}
                 <a href="{{ "/product/"+merch.category+"/"+merch.id | string }}">
-                    <button>
-                        <h3 class="product_name">{{ merch.name }}</h3>
-                        <img src="{{ url_for('static', filename='images/'+merch.image) }}" alt="Merch" class="product_image">
-                        <p class="product_description">{{ merch.description }}</p>
-                        <p class="product_price">{{ merch.price | string+",- NOK" }}</p>
-                        {% if merch.votes==0 %}
-                            <p class="product_rating">☆☆☆☆☆</p>
-                        {% elif merch.votes==1 %}
-                            <p class="product_rating">★☆☆☆☆</p>
-                        {% elif merch.votes==2 %}
-                            <p class="product_rating">★★☆☆☆</p>
-                        {% elif merch.votes==3 %}
-                            <p class="product_rating">★★★☆☆</p>
-                        {% elif merch.votes==4 %}
-                            <p class="product_rating">★★★★☆</p>
-                        {% elif merch.votes==5 %}
-                            <p class="product_rating">★★★★★</p>
-                        {% endif %}
-                    </button>
+                        <button class="product">
+                            <div class="product_name">{{ merch.name }}</div>
+                            <img src="{{ url_for('static', filename='images/'+merch.image) }}" alt="Merch" class="product_image">
+                            <p class="product_description">{{ merch.description }}</p>
+                            <p class="product_price">{{ merch.price | string+",- NOK" }}</p>
+                            {% if merch.votes==0 %}
+                                <p class="product_rating">☆☆☆☆☆</p>
+                            {% elif merch.votes==1 %}
+                                <p class="product_rating">★☆☆☆☆</p>
+                            {% elif merch.votes==2 %}
+                                <p class="product_rating">★★☆☆☆</p>
+                            {% elif merch.votes==3 %}
+                                <p class="product_rating">★★★☆☆</p>
+                            {% elif merch.votes==4 %}
+                                <p class="product_rating">★★★★☆</p>
+                            {% elif merch.votes==5 %}
+                                <p class="product_rating">★★★★★</p>
+                            {% endif %}
+                        </button>
                 </a>
-            </div>
-        {% endfor %}
-        <div class="product" id="product_add">
+            {% endfor %}
             <a href="/add">
-                <button>
-                    +
-                </button>
+                    <button class="product" id="product_add">
+                        +
+                    </button>
             </a>
         </div>
     </div>
